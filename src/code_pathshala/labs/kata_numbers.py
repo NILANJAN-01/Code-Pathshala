@@ -2,6 +2,7 @@
 Number practice (Katas) – loops and logic.
 """
 
+
 def factorial(n: int) -> int:
     """Compute factorial using loops."""
     if n < 0:

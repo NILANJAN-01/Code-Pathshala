@@ -2,6 +2,7 @@
 Loops and conditions – examples using if/else and for loops.
 """
 
+
 def fizzbuzz(n: int) -> list[str]:
     """
     Classic FizzBuzz problem.
