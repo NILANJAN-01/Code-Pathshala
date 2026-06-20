@@ -52,13 +52,22 @@ def info():
     console.print("Created by [bold]Nilanjan Singhamahapatra[/bold]\n")
     console.print("[yellow]Modules available for import:[/yellow]")
     console.print(
-        "  - [bold green]code_pathshala.basics[/bold green] : Variables, strings, numbers, loops, lists & dicts"
+        "  - [bold green]code_pathshala.basics[/bold green]       : Variables, strings, numbers, loops, OOP, mutability"
     )
     console.print(
-        "  - [bold green]code_pathshala.labs[/bold green]   : Practice coding Katas (factorial, palindrome, etc.)"
+        "  - [bold green]code_pathshala.advanced[/bold green]     : Recursion, decorators, generators, context managers"
     )
     console.print(
-        "  - [bold green]code_pathshala.utils[/bold green]  : Reusable I/O, math operations, API utilities, timing decorator"
+        "  - [bold green]code_pathshala.internals[/bold green]    : Reference counting, garbage collection cycles"
+    )
+    console.print(
+        "  - [bold green]code_pathshala.professional[/bold green] : Asyncio concurrency, design patterns"
+    )
+    console.print(
+        "  - [bold green]code_pathshala.labs[/bold green]         : Practice coding Katas (OOP, Advanced, Asyncio, etc.)"
+    )
+    console.print(
+        "  - [bold green]code_pathshala.utils[/bold green]        : Reusable I/O, math operations, API utilities"
     )
     console.print("\n[yellow]Quick CLI commands to get started:[/yellow]")
     console.print(
@@ -100,6 +109,21 @@ def list():
         "Conditionals, loops (for/while), flow control",
         "exercises/ex_03_loops.md",
     )
+    ex_table.add_row(
+        "oop",
+        "Objects, inheritance, variable aliasing, copying",
+        "exercises/ex_04_oop.md",
+    )
+    ex_table.add_row(
+        "advanced",
+        "Recursion, decorators, generators, context managers",
+        "exercises/ex_05_advanced.md",
+    )
+    ex_table.add_row(
+        "internals",
+        "Reference counts, cycles, asyncio events",
+        "exercises/ex_06_internals.md",
+    )
 
     console.print(ex_table)
     console.print()
@@ -121,6 +145,17 @@ def list():
     exm_table.add_row(
         "github", "Fetching repositories from GitHub API", "examples/call_github_api.py"
     )
+    exm_table.add_row(
+        "oop_demo", "OOP behaviour & memory aliasing demo", "examples/use_oop.py"
+    )
+    exm_table.add_row(
+        "async_demo", "Concurrent tasks via asyncio fetches", "examples/use_async.py"
+    )
+    exm_table.add_row(
+        "internals_demo",
+        "Refcounts and garbage cycle demo",
+        "examples/use_internals.py",
+    )
 
     console.print(exm_table)
     console.print()
@@ -141,6 +176,19 @@ def list():
         "reverse_words(text), is_palindrome(text)",
         "src/code_pathshala/labs/kata_string.py",
     )
+    kata_table.add_row(
+        "oop", "BankAccount (owner, balance)", "src/code_pathshala/labs/kata_oop.py"
+    )
+    kata_table.add_row(
+        "advanced",
+        "count_calls, prime_generator",
+        "src/code_pathshala/labs/kata_advanced.py",
+    )
+    kata_table.add_row(
+        "professional",
+        "fetch_item_details (async)",
+        "src/code_pathshala/labs/kata_professional.py",
+    )
 
     console.print(kata_table)
     console.print(
@@ -151,11 +199,13 @@ def list():
 @app.command()
 def exercise(name: str):
     """View details of a specific exercise (e.g. variables, strings, loops)."""
-    # Map name to file
     mapping = {
         "variables": "exercises/ex_01_variables.md",
         "strings": "exercises/ex_02_strings.md",
         "loops": "exercises/ex_03_loops.md",
+        "oop": "exercises/ex_04_oop.md",
+        "advanced": "exercises/ex_05_advanced.md",
+        "internals": "exercises/ex_06_internals.md",
     }
 
     clean_name = name.lower().strip()
@@ -184,11 +234,13 @@ def exercise(name: str):
 
 @app.command(name="run-example")
 def run_example(name: str):
-    """Run an example python script (e.g. hello, utils, github)."""
     mapping = {
         "hello": "examples/hello_world.py",
         "utils": "examples/use_utils.py",
         "github": "examples/call_github_api.py",
+        "oop_demo": "examples/use_oop.py",
+        "async_demo": "examples/use_async.py",
+        "internals_demo": "examples/use_internals.py",
     }
 
     clean_name = name.lower().strip()
